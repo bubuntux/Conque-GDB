@@ -328,7 +328,8 @@ function! s:get_unix_gdb()
         return ''
     endif
 
-    sil let l:gdb_py_support = system(l:gdb_exe . ' -q -batch -ex "python print(\"PYYES\")"')
+    let pyresp = "'PYYES'"
+    sil let l:gdb_py_support = system(l:gdb_exe . ' -q -batch -ex "python print(' . pyresp . ')"')
     if l:gdb_py_support =~ ".*PYYES\n.*"
         " Gdb has python support
         let g:conque_gdb_gdb_py_support = 1
